@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@types/through2": "^2.0.36",
-    "binary-search": "^1.3.6",
     "through2": "^4.0.2"
   }
 }
