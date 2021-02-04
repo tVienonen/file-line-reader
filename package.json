@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "API for reading contents of a file line by line.",
   "main": "build/index.js",
+  "repository": {
+    "url": "https://github.com/tVienonen/file-line-reader"
+  },
   "files": [
     "build/**/*.js",
     "build/**/*.d.ts",
