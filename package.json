@@ -14,6 +14,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register test/*/**.ts",
     "test:acceptance": "mocha -r ts-node/register test/acceptance/*.ts",
+    "prepack": "npm run build",
     "build": "tsc"
   },
   "keywords": [
