@@ -9,7 +9,7 @@ describe('analyze-file', () => {
     it('analyzes test file', (done) => {
         const fd = fs.openSync(testFilePath, 'r');
         const lines: Line[] = [];
-        const stream = analyzeFile(testFilePath, 'utf8');
+        const stream = analyzeFile(testFilePath, 'utf8', err => done(err));
         stream.on('data', line => lines.push(line));
         stream.on('end', () => {
             chai.expect(lines.length).to.be.eq(4);
@@ -29,5 +29,10 @@ describe('analyze-file', () => {
             chai.expect(testStr.compare(targetBuf)).to.be.eq(0);
             done();
         });
+    });
+    it('handles missing file properly', (done) => {
+        const stream = analyzeFile('phony-file-name.txt', 'utf8', err => done());
+        stream.on('data', () => chai.assert.fail('Should not emit data events'));
+        stream.on('error', () => chai.assert.fail('No error event expected from missing file'));
     });
 });

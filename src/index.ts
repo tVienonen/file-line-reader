@@ -35,11 +35,11 @@ export class FileContentsReader {
      */
     async refreshLines() {
         this.lines = await new Promise<ScannedLine[]>((resolve, reject) => {
-            const analyzeStream = analyzeFile(this.filePath, this.encoding);
+            const analyzeStream = analyzeFile(this.filePath, this.encoding, err => reject(err));
             const lines: ScannedLine[] = [];
-            analyzeStream.on('data', line => lines.push(line));
-            analyzeStream.on('end', () => resolve(lines));
             analyzeStream.on('error', (err) => reject(err));
+            analyzeStream.on('end', () => resolve(lines));
+            analyzeStream.on('data', line => lines.push(line));
         });
     }
     /**

@@ -25,11 +25,13 @@ function rotateLeft(buf: Buffer) {
     }
 }
 
-export function analyzeFile(path: string, encoding: BufferEncoding) {
+export function analyzeFile(path: string, encoding: BufferEncoding, cb: (err: Error) => any) {
     let readBytes = 0;
     let line = makeLine();
     const eolBuf = Buffer.from(os.EOL, encoding);
+    
     return fs.createReadStream(path)
+    .on('error', cb)
     .pipe(through.obj(
         function(chunk: Buffer, enc, cb) {
             let ptr = 0;
