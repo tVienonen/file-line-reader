@@ -1,6 +1,6 @@
 {
   "name": "file-line-scanner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "API for reading contents of a file line by line.",
   "main": "build/index.js",
   "repository": {
